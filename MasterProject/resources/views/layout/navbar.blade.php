@@ -82,7 +82,7 @@
 
                 <a href="/" class="nav-item nav-link @yield('home')">Home</a>
                 <a href="about" class="nav-item nav-link @yield('about')">About</a>
-                <a href="courses" class="nav-item nav-link @yield('courses')">Courses</a>
+                <a href="Vehicles" class="nav-item nav-link @yield('courses')">Vehicles</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu bg-light m-0">

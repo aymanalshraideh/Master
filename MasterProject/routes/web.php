@@ -24,8 +24,8 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
-Route::get('/courses', function () {
-    return view('courses');
+Route::get('/vehicles', function () {
+    return view('vehicles');
 });
 
 Route::get('/content', function () {

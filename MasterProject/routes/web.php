@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\UsersController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -12,6 +13,18 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+// -------------------Login routes --------------------------------
+
+Route::get('/register',[UsersController::class,'index']);
+Route::post('/registe',[UsersController::class,'store'])->name('register');
+
+
+// -------------------Login routes --------------------------------
+
+
+
 
 Route::get('/', function () {
     return view('index');
@@ -48,9 +61,9 @@ Route::get('/testimonial', function () {
     return view('testimonial');
 });
 
-Route::get('/register', function () {
-    return view('register');
-});
+// Route::get('/register', function () {
+//     return view('register');
+// });
 Route::get('/login', function () {
     return view('login');
 });

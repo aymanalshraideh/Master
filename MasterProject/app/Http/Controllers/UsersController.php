@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Crypt;
+
+use function Ramsey\Uuid\v1;
+
 class UsersController extends Controller
 {
     /**
@@ -11,10 +15,57 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+     // -------------------register  --------------------------------
+    public function registerindex()
     {
         return view('register');
     }
+     // -------------------//register  --------------------------------
+
+// -------------------Login show --------------------------------
+
+    public function loginindex()
+    {
+        return view('login');
+    }
+// -------------------//Login show --------------------------------
+
+public function loginstore(Request $request)
+{
+    $this->validate($request,[
+
+        'email' => 'regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
+
+        "password" => "required|min:6",
+
+
+    ]);
+   $email = $request->email;
+   $password =$request->password;
+    $useremail=User::where('email',$email)->first();
+$depassword= Crypt::decrypt($useremail->password);;
+    if(isset($useremail)){
+        if($useremail->email == $email && $depassword  == $password){
+$request->session()->put('user_id',$useremail->id);
+// if (session('user_id')){
+//     return 'success session';
+// }
+        // return 'success login';
+     return   redirect('/');
+    }else{
+        return redirect('login')->with(['danger' => 'Falid ']);
+    }
+    }else{
+        return 'faled';
+    }
+
+}
+
+
+
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -32,7 +83,7 @@ class UsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function registerstore(Request $request)
     {
         $this->validate($request,[
             "name" => "required",
@@ -47,7 +98,7 @@ class UsersController extends Controller
         $register->email=$request->email;
         $register->phone=$request->phone;
         // $hashed=Hash::make($request->password);
-        $register->password=$request->password;
+        $register->password=  Crypt::encrypt($request->password);
         $register->save();
         return redirect('register')->with(['status' => 'Success Register ']);
     }
@@ -58,9 +109,14 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        if(session('user_id')){
+        $id=session('user_id');
+        $user=User::find($id);
+
+}
+return view('user',['user'=>$user]);
     }
 
     /**
@@ -69,9 +125,27 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edituser(Request $request )
     {
-        //
+        // $this->validate($request,[
+        //     "name" => "required",
+        //     "email" => "required|email|unique:users",
+        //     "phone"=>"required|min:10|max:14",
+        //     "password" => "required|min:6",
+
+
+        // ]);
+        $id=session('user_id');
+        $edit=User::where('id' , session('user_id'))->first();
+        $edit->name=$request->name;
+        $edit->email=$request->email;
+        $edit->phone=$request->phone;
+        $edit->address=$request->address;
+
+        // $hashed=Hash::make($request->password);
+        $edit->password=  Crypt::encrypt($request->password);
+        $edit->save();
+        return redirect('user');
     }
 
     /**
@@ -95,5 +169,11 @@ class UsersController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function destroysession(Request $request)
+    {
+        if(session('user_id')){
+        $request->session()->forget('user_id');
+        return redirect('/');}
     }
 }

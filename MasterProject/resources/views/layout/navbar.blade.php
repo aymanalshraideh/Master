@@ -73,7 +73,9 @@
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="/" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
             <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Waselnaa</h2>
+
         </a>
+        
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -92,7 +94,13 @@
                         <a href="testimonial" class="dropdown-item">Testimonial</a>
                         <a href="user" class="dropdown-item"><i class="fa fa-user" aria-hidden="true"></i>User</a>
                         <a href="register" class="dropdown-item">register</a>
-                        <a href="login" class="dropdown-item">Login</a>
+                        @if (session('user_id'))
+<a href="{{route('logOut')}}" class="dropdown-item">LogOut</a>
+                        @endif
+                        @if (!session('user_id'))
+<a href="login" class="dropdown-item">LogIn</a>
+                        @endif
+
                     </div>
                 </div>
                 <a href="contact" class="nav-item nav-link @yield('contact')">Contact</a>

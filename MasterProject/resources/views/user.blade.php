@@ -1,5 +1,5 @@
 @extends('layout.main')
-@section('title', 'LogIn')
+@section('title', 'User Profile')
 
 
 
@@ -27,9 +27,9 @@
                   <div class="d-flex flex-column align-items-center text-center">
                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
                     <div class="mt-3">
-                      <h4>John Doe</h4>
-                      <p class="text-secondary mb-1">Full Stack Developer</p>
-                      <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
+                      <h4>{{$user->name}}</h4>
+                      <p class="text-secondary mb-1">Email:{{$user->email}}</p>
+                      <p class="text-muted font-size-sm">Address:{{$user->address}}</p>
                       <button class="btn btn-primary">Follow</button>
                       <button class="btn btn-outline-primary">Message</button>
                     </div>
@@ -64,12 +64,16 @@
             <div class="col-md-8">
               <div class="card mb-3">
                 <div class="card-body">
+                    <form action="{{route('editprofile')}}" method="post">
+                        @csrf
                   <div class="row">
+
                     <div class="col-sm-3">
                       <h6 class="mb-0">Full Name</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      Kenneth Valdez
+                        <input type="text" class="form-control" name='name' value="{{$user->name}}">
+
                     </div>
                   </div>
                   <hr>
@@ -78,7 +82,8 @@
                       <h6 class="mb-0">Email</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      fip@jukmuh.al
+                        <input type="text" class="form-control" name='email' value="{{$user->email}}">
+
                     </div>
                   </div>
                   <hr>
@@ -87,33 +92,31 @@
                       <h6 class="mb-0">Phone</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      (239) 816-9029
+                        <input type="text" class="form-control" name='phone' value="{{$user->phone}}">
+
                     </div>
                   </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Mobile</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      (320) 380-4539
-                    </div>
-                  </div>
+
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
                       <h6 class="mb-0">Address</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      Bay Area, San Francisco, CA
+                        <input type="text" class="form-control" name='address' value="{{$user->address}}">
+                        <input type="hidden" class="form-control" name='password' value="{{$user->password}}">
+
+
                     </div>
                   </div>
                   <hr>
                   <div class="row">
                     <div class="col-sm-12">
-                      <a class="btn btn-info " target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a>
+                        <button type="submit" class="btn btn-primary">Edit</button>
                     </div>
+
                   </div>
+                </form>
                 </div>
               </div>
 

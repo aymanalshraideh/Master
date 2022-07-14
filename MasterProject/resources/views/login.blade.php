@@ -15,16 +15,30 @@
 
                         <div class="card-body p-4 p-md-5">
                             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Log In</h3>
+                            @if (session('danger'))
+                            <div class="alert alert-danger">
 
-                            <form class="px-md-2">
+                                {{ session('danger') }}<i class="fa fa-check" aria-hidden="true"></i>
 
+                            </div>
+                        @endif
+                            <form class="px-md-2" method="post" action={{route('login')}}>
+@csrf
                                 <div class="form-outline mb-4">
-                                    <input type="text" id="form3Example1q" class="form-control" />
-                                    <label class="form-label" for="form3Example1q">Name</label>
+                                    @error('email')
+                                    <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                @enderror
+                                    <label class="form-label" for="form3Example1q">Email</label>
+                                    <input type="text" id="form3Example1q" class="form-control" name="email" />
+
                                 </div>
                                         <div class="form-outline datepicker">
-                                            <input type="password" class="form-control"  />
+                                            @error('password')
+                                    <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                @enderror
                                             <label for="exampleDatepicker1" class="form-label">Password</label>
+                                            <input type="password" class="form-control"  name="password" />
+
                                         </div>
 
                                 <button type="submit" class="btn btn-success btn-lg mb-1">Log In</button>

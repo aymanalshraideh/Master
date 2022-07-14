@@ -15,14 +15,32 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+// -------------------register routes --------------------------------
+
+Route::get('/register',[UsersController::class,'registerindex']);
+Route::post('/registe',[UsersController::class,'registerstore'])->name('register');
+
+
+// -------------------register routes --------------------------------
+
 // -------------------Login routes --------------------------------
 
-Route::get('/register',[UsersController::class,'index']);
-Route::post('/registe',[UsersController::class,'store'])->name('register');
+Route::get('/login',[UsersController::class,'loginindex']);
+Route::post('/login',[UsersController::class,'loginstore'])->name('login');
 
 
 // -------------------Login routes --------------------------------
 
+// -------------------Log Out routes ---------------------------------
+Route::get('/logOut',[UsersController::class,'destroysession'])->name('logOut');
+
+// -------------------//Log Out routes --------------------------------
+
+// -------------------user routes ---------------------------------
+Route::get('/user',[UsersController::class,'show']);
+Route::post('/edituser',[UsersController::class,'edituser'])->name('editprofile');
+
+// -------------------user routes ---------------------------------
 
 
 
@@ -64,9 +82,9 @@ Route::get('/testimonial', function () {
 // Route::get('/register', function () {
 //     return view('register');
 // });
-Route::get('/login', function () {
-    return view('login');
-});
-Route::get('/user', function () {
-    return view('user');
-});
+// Route::get('/login', function () {
+//     return view('login');
+// });
+// Route::get('/user', function () {
+//     return view('user');
+// });

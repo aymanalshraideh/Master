@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('phone')->unique();
             $table->string('image')->nullable();
             $table->string('address')->nullable();
-
+            $table->string('rool');
             $table->longText('password');
             $table->string('order')->nullable();
 

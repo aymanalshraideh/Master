@@ -75,10 +75,25 @@
             <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Waselnaa</h2>
 
         </a>
-        
-        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        {{-- @if (session('status'))
+        <a href="/" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5 alert-success">
+            <h2 class="m-0 ">{{ session('status') }}</h2>
+
+        </a>
+        @endif --}}
+        {{-- <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
-        </button>
+        </button> --}}
+
+        {{-- @if (session('status'))
+        {{-- <div class="alert alert-success navbar-brand d-flex align-items-center border-end px-4 px-lg-5"> --}}
+            {{-- <div class="alert alert-success" role="alert">
+                {{ session('status') }}<i class="fa fa-check" aria-hidden="true"></i>
+              </div> --}}
+
+
+        {{-- </div> --}}
+        {{-- @endif --}}
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
 
@@ -92,8 +107,30 @@
                         <a href="appointment" class="dropdown-item">Appointment</a>
                         <a href="team" class="dropdown-item">Our Team</a>
                         <a href="testimonial" class="dropdown-item">Testimonial</a>
-                        <a href="user" class="dropdown-item"><i class="fa fa-user" aria-hidden="true"></i>User</a>
+
+
+                        @if (!session('user_id'))
                         <a href="register" class="dropdown-item">register</a>
+
+
+                        @if (session('user_id'))
+<a href="{{route('logOut')}}" class="dropdown-item">LogOut</a>
+                        @endif
+                        @if (!session('user_id'))
+<a href="login" class="dropdown-item">LogIn</a>
+                        @endif
+@endif
+                    </div>
+                </div>
+                @if (session('user_id'))
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"> <i class="fa fa-user" aria-hidden="true"></i>{{session('user_name')}}</a>
+                    <div class="dropdown-menu bg-light m-0">
+
+
+                        <a href="user" class="dropdown-item"><i class="fa fa-user" aria-hidden="true"></i> {{session('user_name')}} Profile</a>
+
+
                         @if (session('user_id'))
 <a href="{{route('logOut')}}" class="dropdown-item">LogOut</a>
                         @endif
@@ -103,6 +140,7 @@
 
                     </div>
                 </div>
+                @endif
                 <a href="contact" class="nav-item nav-link @yield('contact')">Contact</a>
             </div>
             {{-- <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Get Started<i class="fa fa-arrow-right ms-3"></i></a> --}}

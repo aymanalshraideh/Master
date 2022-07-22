@@ -14,7 +14,7 @@
                     <div class="card rounded-3">
                         @if (session('status'))
                         <div class="alert alert-success">
-                            
+
                             {{ session('status') }}<i class="fa fa-check" aria-hidden="true"></i>
 
                         </div>
@@ -48,6 +48,23 @@
                                     <input type="number" class="form-control" name="phone" placeholder="07*******">
 
                                 </div>
+
+                                <div class="form-outline datepicker">
+                                    @error('rool')
+                                    <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                @enderror
+                                    <label for="" class="form-label">Mobile Number</label>
+                                    <select class="form-select" aria-label="Default select example" name="rool">
+                                        <option selected>Open this select menu</option>
+                                        <option value="1">Driver</option>
+                                        <option value="2">passenger</option>
+
+                                      </select>
+
+
+                                </div>
+
+
                                 <div class="form-outline datepicker">
                                     @error('password')
                                     <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
@@ -72,8 +89,8 @@
 
 
 
-                                <button type="submit" class="btn btn-success btn-lg mb-1">Submit <i class="fa fa-user-plus" aria-hidden="true"></i></button>
-
+                                <button type="submit" class="btn btn-success btn-lg mb-1"><i class="fa fa-user-plus" aria-hidden="true">Submit </i></button>
+                                <a href="login">Already have account!</a>
                             </form>
 
                         </div>

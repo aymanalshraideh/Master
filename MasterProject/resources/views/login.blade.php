@@ -41,8 +41,8 @@
 
                                         </div>
 
-                                <button type="submit" class="btn btn-success btn-lg mb-1">Log In</button>
-
+                                <button type="submit" class="btn btn-success btn-lg mb-1"><i class="fas fa-sign-in-alt">Log In</i></button>
+                                 <a href="register">Create  account!</a>
                             </form>
 
                         </div>

@@ -25,7 +25,13 @@
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
+
+                    @if (isset($user->image))
+<img src="{{$user->image}}" alt="Admin" class="rounded-circle" width="150">
+                    @else
                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                    @endif
+
                     <div class="mt-3">
                       <h4>{{$user->name}}</h4>
                       <p class="text-secondary mb-1">Email:{{$user->email}}</p>
@@ -64,7 +70,7 @@
             <div class="col-md-8">
               <div class="card mb-3">
                 <div class="card-body">
-                    <form action="{{route('editprofile')}}" method="post">
+                    <form action="{{route('editprofile')}}" method="post" enctype="multipart/form-data">
                         @csrf
                   <div class="row">
 
@@ -95,8 +101,19 @@
                         <input type="text" class="form-control" name='phone' value="{{$user->phone}}">
 
                     </div>
-                  </div>
 
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Image</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        <input type="file" class="form-control" name='image' value="{{$user->image}}">
+
+                    </div>
+
+                  </div>
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">

@@ -47,12 +47,15 @@ public function loginstore(Request $request)
 $depassword= Crypt::decrypt($useremail->password);;
     if(isset($useremail)){
         if($useremail->email == $email && $depassword  == $password){
+
 $request->session()->put('user_id',$useremail->id);
+$request->session()->put('user_name',$useremail->name);
+
 // if (session('user_id')){
 //     return 'success session';
 // }
         // return 'success login';
-     return   redirect('/');
+     return   redirect('/')->with(['status' => 'Welcome '.$useremail->name]);
     }else{
         return redirect('login')->with(['danger' => 'Falid ']);
     }
@@ -97,6 +100,7 @@ $request->session()->put('user_id',$useremail->id);
         $register->name=$request->name;
         $register->email=$request->email;
         $register->phone=$request->phone;
+        $register->rool=$request->rool;
         // $hashed=Hash::make($request->password);
         $register->password=  Crypt::encrypt($request->password);
         $register->save();
@@ -114,10 +118,13 @@ $request->session()->put('user_id',$useremail->id);
         if(session('user_id')){
         $id=session('user_id');
         $user=User::find($id);
-
-}
 return view('user',['user'=>$user]);
+}else{
+    return redirect('login');
+}
+
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -135,15 +142,24 @@ return view('user',['user'=>$user]);
 
 
         // ]);
+
+            // handle uploaded file and replace the path in the database record
+
         $id=session('user_id');
         $edit=User::where('id' , session('user_id'))->first();
         $edit->name=$request->name;
         $edit->email=$request->email;
         $edit->phone=$request->phone;
         $edit->address=$request->address;
+        if ($request->hasFile('image')) {
+       $file=$request->image;
+       $new_file=time().$file->getClientOriginalName();
+       $file->move('images',$new_file);
+       $edit->image='images/'.$new_file;
+        }
 
         // $hashed=Hash::make($request->password);
-        $edit->password=  Crypt::encrypt($request->password);
+        $edit->password= $request->password;
         $edit->save();
         return redirect('user');
     }
@@ -174,6 +190,8 @@ return view('user',['user'=>$user]);
     {
         if(session('user_id')){
         $request->session()->forget('user_id');
+        $request->session()->forget('user_name');
+
         return redirect('/');}
     }
 }

@@ -17,3 +17,9 @@ Route::get('/element', function () {
 Route::get('/chart', function () {
     return view('dashboard.chart');
 });
+Route::get('/loginAdmin', function () {
+    return view('dashboard.signin');
+});
+Route::get('/regeasterAdmin', function () {
+    return view('dashboard.signup');
+});

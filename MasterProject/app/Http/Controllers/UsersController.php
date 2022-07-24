@@ -16,12 +16,19 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     // -------------------register  --------------------------------
+     // -------------------register  user--------------------------------
     public function registerindex()
     {
         return view('register');
     }
-     // -------------------//register  --------------------------------
+     // -------------------//register user --------------------------------
+
+       // -------------------register  user--------------------------------
+    public function adminRegisterindex()
+    {
+        return view('dashboard.signup');
+    }
+     // -------------------//register user --------------------------------
 
 // -------------------Login show --------------------------------
 
@@ -86,6 +93,10 @@ $request->session()->put('user_name',$useremail->name);
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+
+
+    //-----------User Reqister-----------
     public function registerstore(Request $request)
     {
         $this->validate($request,[
@@ -101,11 +112,83 @@ $request->session()->put('user_name',$useremail->name);
         $register->email=$request->email;
         $register->phone=$request->phone;
         $register->rool=$request->rool;
+        $register->address=$request->address;
+        if ($request->hasFile('license_person_image')) {
+            $file=$request->license_person_image;
+            $new_file=time().$file->getClientOriginalName();
+            $file->move('images',$new_file);
+            $register->license_person_image='images/'.$new_file;
+             }
+             if ($request->hasFile('license_car_image')) {
+                $file=$request->license_car_image;
+                $new_file=time().$file->getClientOriginalName();
+                $file->move('images',$new_file);
+                $register->license_car_image='images/'.$new_file;
+                 }
+
         // $hashed=Hash::make($request->password);
+        if ($request->hasFile('profileImage')) {
+            $file=$request->profileImage;
+            $new_file=time().$file->getClientOriginalName();
+            $file->move('images',$new_file);
+            $register->profileImage='images/'.$new_file;
+             }
+
+
+             if ($request->hasFile('image1')) {
+                $file=$request->image1;
+                $new_file=time().$file->getClientOriginalName();
+                $file->move('images',$new_file);
+                $register->image1='images/'.$new_file;
+                 }
+                 if ($request->hasFile('image2')) {
+                    $file=$request->image2;
+                    $new_file=time().$file->getClientOriginalName();
+                    $file->move('images',$new_file);
+                    $register->image2='images/'.$new_file;
+                     }
+                     if ($request->hasFile('image3')) {
+                        $file=$request->image3;
+                        $new_file=time().$file->getClientOriginalName();
+                        $file->move('images',$new_file);
+                        $register->image3='images/'.$new_file;
+                         }
         $register->password=  Crypt::encrypt($request->password);
         $register->save();
         return redirect('register')->with(['status' => 'Success Register ']);
     }
+    //-----------User Reqister-----------
+
+    //-----------Admin Reqister-----------
+
+    public function adminRegisterstore(Request $request)
+    {
+        $this->validate($request,[
+            "name" => "required",
+            "email" => "required|email|unique:users",
+            "phone"=>"required|min:10|max:14",
+            "password" => "required|min:6",
+
+
+        ]);
+        $register=new User();
+        $register->name=$request->name;
+        $register->email=$request->email;
+        $register->phone=$request->phone;
+        $register->rool=$request->rool;
+
+        // $hashed=Hash::make($request->password);
+        $register->password=  Crypt::encrypt($request->password);
+        $register->save();
+        return redirect('registerAdmin')->with(['status' => 'Success Register ']);
+    }
+    //-----------Admin Reqister-----------
+
+
+
+
+
+
 
     /**
      * Display the specified resource.
@@ -151,12 +234,43 @@ return view('user',['user'=>$user]);
         $edit->email=$request->email;
         $edit->phone=$request->phone;
         $edit->address=$request->address;
-        if ($request->hasFile('image')) {
-       $file=$request->image;
-       $new_file=time().$file->getClientOriginalName();
-       $file->move('images',$new_file);
-       $edit->image='images/'.$new_file;
-        }
+        if ($request->hasFile('profileImage')) {
+            $file=$request->profileImage;
+            $new_file=time().$file->getClientOriginalName();
+            $file->move('images',$new_file);
+            $edit->profileImage='images/'.$new_file;
+             }
+             if ($request->hasFile('license_person_image')) {
+                $file=$request->license_person_image;
+                $new_file=time().$file->getClientOriginalName();
+                $file->move('images',$new_file);
+                $edit->license_person_image='images/'.$new_file;
+                 }
+                 if ($request->hasFile('license_car_image')) {
+                    $file=$request->license_car_image;
+                    $new_file=time().$file->getClientOriginalName();
+                    $file->move('images',$new_file);
+                    $edit->license_car_image='images/'.$new_file;
+                     }
+
+             if ($request->hasFile('image1')) {
+                $file=$request->image1;
+                $new_file=time().$file->getClientOriginalName();
+                $file->move('images',$new_file);
+                $edit->image1='images/'.$new_file;
+                 }
+                 if ($request->hasFile('image2')) {
+                    $file=$request->image2;
+                    $new_file=time().$file->getClientOriginalName();
+                    $file->move('images',$new_file);
+                    $edit->image2='images/'.$new_file;
+                     }
+                     if ($request->hasFile('image3')) {
+                        $file=$request->image3;
+                        $new_file=time().$file->getClientOriginalName();
+                        $file->move('images',$new_file);
+                        $edit->image3='images/'.$new_file;
+                         }
 
         // $hashed=Hash::make($request->password);
         $edit->password= $request->password;

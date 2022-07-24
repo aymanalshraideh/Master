@@ -2,7 +2,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\UsersController;
 Route::get('/admin', function () {
     return view('dashboard.index');
 });
@@ -20,6 +20,14 @@ Route::get('/chart', function () {
 Route::get('/loginAdmin', function () {
     return view('dashboard.signin');
 });
-Route::get('/regeasterAdmin', function () {
-    return view('dashboard.signup');
-});
+// Route::get('/regeasterAdmin', function () {
+//     return view('dashboard.signup');
+// });
+
+// -------------------register routes --------------------------------
+
+Route::get('/registerAdmin',[UsersController::class,'adminRegisterindex']);
+Route::post('/registerr',[UsersController::class,'adminRegisterstore'])->name('registerAdmin');
+
+
+// -------------------register routes --------------------------------

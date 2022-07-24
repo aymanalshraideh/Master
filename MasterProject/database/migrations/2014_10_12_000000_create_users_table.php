@@ -18,8 +18,16 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->integer('phone')->unique();
-            $table->string('image')->nullable();
+            $table->string('profileImage')->nullable();
             $table->string('address')->nullable();
+            $table->string('image1')->nullable();
+            $table->string('image2')->nullable();
+            $table->string('image3')->nullable();
+            $table->string('license_car_image')->nullable();
+            $table->string('license_person_image')->nullable();
+            $table->string('remember_token')->nullable();
+
+
             $table->string('rool');
             $table->longText('password');
             $table->string('order')->nullable();

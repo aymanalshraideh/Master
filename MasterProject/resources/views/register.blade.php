@@ -22,7 +22,7 @@
                         <div class="card-body p-4 p-md-5">
                             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Registration</h3>
 
-                            <form method="post" action="{{route('register')}}">
+                            <form method="post" action="{{route('register')}}" enctype="multipart/form-data">
                             @csrf
                                 <div class="form-outline mb-4">
                                     @error('name')
@@ -48,22 +48,74 @@
                                     <input type="number" class="form-control" name="phone" placeholder="07*******">
 
                                 </div>
+                                <div class="form-outline datepicker">
+                                    @error('address')
+                                    <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                @enderror
+                                    <label for="" class="form-label">Address</label>
+                                    <input type="text" class="form-control" name="address" >
+
+                                </div>
+                                <div class="form-outline datepicker">
+                                    @error('image')
+                                    <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                @enderror
+                                    <label for="" class="form-label">Profile Picture</label>
+                                    <input type="file" class="form-control" name="profileImage" >
+
+                                </div>
 
                                 <div class="form-outline datepicker">
                                     @error('rool')
                                     <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                 @enderror
-                                    <label for="" class="form-label">Mobile Number</label>
-                                    <select class="form-select" aria-label="Default select example" name="rool">
-                                        <option selected>Open this select menu</option>
-                                        <option value="1">Driver</option>
-                                        <option value="2">passenger</option>
-
-                                      </select>
+                                    <label for="" class="form-label">Your Register State</label>
+                                   <br>
+<label for="">Driver</label>
+<input type="radio" onchange="myd()" value="1" name="rool" style="margin-right: 40px">
+<label for="">Passenger</label>
+<input type="radio" value="2" onchange="m()" name="rool" id="">
 
 
                                 </div>
+                                <script>
 
+function myd() {
+            let mydd = document.getElementById("state");
+            mydd.style.visibility = "visible";
+console.log('aaa')
+
+        }
+        function m() {
+            let mydd = document.getElementById("state");
+            mydd.style.visibility = "hidden";
+console.log('sss')
+
+        }
+
+
+
+//                                     let m=document.getElementByid('state').value
+// console.log(m)
+// if(document.getElementByid('state').value == "1"){
+//      document.getElementById("driver").style.visibility = "visible";
+// }
+
+// function click(){
+
+//     console.log('ayman')
+// }
+                                </script>
+
+                                <div id="state" class="form-outline datepicker"  style="visibility: hidden">
+                                    {{-- @error('phone') --}}
+                                    {{-- <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div> --}}
+                                    {{-- @enderror --}}
+                                    <label for="" class="form-label">License Card</label>
+                                    <input type="file" class="form-control" name="license_person_image" >
+                                    <label for="" class="form-label">License Car</label>
+                                    <input type="file" class="form-control" name="license_car_image" >
+                              </div>
 
                                 <div class="form-outline datepicker">
                                     @error('password')

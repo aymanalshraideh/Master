@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Category;
 use Illuminate\Support\Facades\Crypt;
 
 use function Ramsey\Uuid\v1;
@@ -100,7 +101,8 @@ $request->session()->put('user_name',$useremail->name);
     public function registerstore(Request $request)
     {
         $this->validate($request,[
-            "name" => "required",
+            "fname" => "required",
+            "lname" => "required",
             "email" => "required|email|unique:users",
             "phone"=>"required|min:10|max:14",
             "password" => "required|min:6",
@@ -108,7 +110,8 @@ $request->session()->put('user_name',$useremail->name);
 
         ]);
         $register=new User();
-        $register->name=$request->name;
+        $register->fname=$request->fname;
+        $register->lname=$request->lname;
         $register->email=$request->email;
         $register->phone=$request->phone;
         $register->rool=$request->rool;
@@ -201,7 +204,8 @@ $request->session()->put('user_name',$useremail->name);
         if(session('user_id')){
         $id=session('user_id');
         $user=User::find($id);
-return view('user',['user'=>$user]);
+        $category=Category::all();
+return view('user',['user'=>$user])->with(compact('category'));
 }else{
     return redirect('login');
 }
@@ -230,7 +234,8 @@ return view('user',['user'=>$user]);
 
         $id=session('user_id');
         $edit=User::where('id' , session('user_id'))->first();
-        $edit->name=$request->name;
+        $edit->fname=$request->fname;
+        $edit->lname=$request->lname;
         $edit->email=$request->email;
         $edit->phone=$request->phone;
         $edit->address=$request->address;
@@ -274,7 +279,7 @@ return view('user',['user'=>$user]);
 
         // $hashed=Hash::make($request->password);
         $edit->password= $request->password;
-        $edit->save();
+        $edit->update();
         return redirect('user');
     }
 

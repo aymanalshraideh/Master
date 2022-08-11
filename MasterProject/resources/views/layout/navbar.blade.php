@@ -45,23 +45,23 @@
             <div class="col-lg-7 px-5 text-start">
                 <div class="h-100 d-inline-flex align-items-center me-4">
                     <small class="fa fa-map-marker-alt text-primary me-2"></small>
-                    <small>123 Street, New York, USA</small>
+                    <small>Irbid, Jordan</small>
                 </div>
-                <div class="h-100 d-inline-flex align-items-center">
+                {{-- <div class="h-100 d-inline-flex align-items-center">
                     <small class="far fa-clock text-primary me-2"></small>
                     <small>Mon - Fri : 09.00 AM - 09.00 PM</small>
-                </div>
+                </div> --}}
             </div>
             <div class="col-lg-5 px-5 text-end">
                 <div class="h-100 d-inline-flex align-items-center me-4">
                     <small class="fa fa-phone-alt text-primary me-2"></small>
-                    <small>+012 345 6789</small>
+                    <small>+962778091870</small>
                 </div>
                 <div class="h-100 d-inline-flex align-items-center mx-n2">
-                    <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i class="fab fa-linkedin-in"></i></a>
-                    <a class="btn btn-square btn-link rounded-0" href=""><i class="fab fa-instagram"></i></a>
+                    <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href="https://web.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
+                    <a class="btn btn-square btn-link rounded-0" href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
         </div>
@@ -72,7 +72,7 @@
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="/" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
-            <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Waselnaa</h2>
+            <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>ُBest Ride</h2>
 
         </a>
         {{-- @if (session('status'))
@@ -99,7 +99,7 @@
 
                 <a href="/" class="nav-item nav-link @yield('home')">Home</a>
                 <a href="about" class="nav-item nav-link @yield('about')">About</a>
-                <a href="Vehicles" class="nav-item nav-link @yield('courses')">Vehicles</a>
+                <a href="allcars" class="nav-item nav-link @yield('courses')">Vehicles</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu bg-light m-0">

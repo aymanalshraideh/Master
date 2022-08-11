@@ -1,5 +1,8 @@
 <?php
+
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CarController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -17,47 +20,59 @@ use Illuminate\Support\Facades\Route;
 
 // -------------------register routes --------------------------------
 
-Route::get('/register',[UsersController::class,'registerindex']);
-Route::post('/registe',[UsersController::class,'registerstore'])->name('register');
+Route::get('/register', [UsersController::class, 'registerindex']);
+Route::post('/registe', [UsersController::class, 'registerstore'])->name('register');
 
 
 // -------------------register routes --------------------------------
 
 // -------------------Login routes --------------------------------
 
-Route::get('/login',[UsersController::class,'loginindex']);
-Route::post('/login',[UsersController::class,'loginstore'])->name('login');
+Route::get('/login', [UsersController::class, 'loginindex']);
+Route::post('/login', [UsersController::class, 'loginstore'])->name('login');
 
 
 // -------------------Login routes --------------------------------
 
 // -------------------Log Out routes ---------------------------------
-Route::get('/logOut',[UsersController::class,'destroysession'])->name('logOut');
+Route::get('/logOut', [UsersController::class, 'destroysession'])->name('logOut');
 
 // -------------------//Log Out routes --------------------------------
 
 // -------------------user routes ---------------------------------
-Route::get('/user',[UsersController::class,'show']);
-Route::post('/edituser',[UsersController::class,'edituser'])->name('editprofile');
+Route::get('/user', [UsersController::class, 'show']);
+Route::post('/edituser', [UsersController::class, 'edituser'])->name('editprofile');
 
 // -------------------user routes ---------------------------------
 
+//----------------- Show Category in index---------------------------
+Route::get('/', [CategoryController::class, 'index']);
 
 
-Route::get('/', function () {
-    return view('index');
-});
 
 Route::get('/feature', function () {
     return view('feature');
 });
-Route::get('/contact', function () {
-    return view('contact');
-});
+// Route::get('/allcars', function () {
+//     return view('allcars');
+// });
 
-Route::get('/vehicles', function () {
-    return view('vehicles');
-});
+//--------- Single Category --------------------------------
+Route::get('/Vehicles/{id}', [CategoryController::class, 'singleCategory'])->name('singleCategory');
+
+//---------- single Car----
+
+Route::get('/singlevhicle/{id}', [CarController::class, 'singlevhicle'])->name('singleCar');
+
+//---------- All Cars ------
+Route::get('/allcars', [CarController::class, 'allcars']);
+Route::post('/addcar', [CarController::class, 'store'])->name('addcar');
+
+
+
+// Route::get('/Vehicles', function () {
+//     return view('vehicles');
+// });
 
 Route::get('/content', function () {
     return view('content');

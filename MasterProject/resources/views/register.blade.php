@@ -25,11 +25,19 @@
                             <form method="post" action="{{route('register')}}" enctype="multipart/form-data">
                             @csrf
                                 <div class="form-outline mb-4">
-                                    @error('name')
+                                    @error('First Name')
                                     <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                 @enderror
-                                    <label class="form-label" for="form3Example1q">Name</label>
-                                    <input type="text" class="form-control" name="name" placeholder="ex:Ayman AlShraideh">
+                                    <label class="form-label" for="form3Example1q">First Name</label>
+                                    <input type="text" class="form-control" name="fname" placeholder="ex:Ayman AlShraideh">
+
+                                </div>
+                                <div class="form-outline mb-4">
+                                    @error('Last Name')
+                                    <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                @enderror
+                                    <label class="form-label" for="form3Example1q">Last Name</label>
+                                    <input type="text" class="form-control" name="lname" placeholder="ex:Ayman AlShraideh">
 
                                 </div>
                                 <div class="form-outline datepicker">
@@ -115,6 +123,7 @@ console.log('sss')
                                     <input type="file" class="form-control" name="license_person_image" >
                                     <label for="" class="form-label">License Car</label>
                                     <input type="file" class="form-control" name="license_car_image" >
+                                    {{-- <input type="hidden" name="status" value="0"> --}}
                               </div>
 
                                 <div class="form-outline datepicker">

@@ -15,12 +15,24 @@ return new class extends Migration
     {
         Schema::create('cars', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('driver_id');
+
+            $table->foreignId('user_id')
+            ->constrained('users')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
             $table->string('car_model');
-            $table->string('car_image');
+           
+            $table->string('image1')->nullable();
+            $table->string('image2')->nullable();
+            $table->string('image3')->nullable();
             $table->string('car_description');
             $table->string('car_number');
             $table->string('car_color');
+
+            $table->foreignId('category_id')
+            ->constrained('categories')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
 
             $table->timestamps();
         });
@@ -33,6 +45,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cars');
+        //
     }
 };

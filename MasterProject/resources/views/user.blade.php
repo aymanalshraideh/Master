@@ -33,7 +33,7 @@
                     @endif
 
                     <div class="mt-3">
-                      <h4>{{$user->name}}</h4>
+                      <h4>{{$user->fname.' '.$user->lname}}</h4>
                       <p class="text-secondary mb-1">Email:{{$user->email}}</p>
                       <p class="text-muted font-size-sm">Address:{{$user->address}}</p>
                       <button class="btn btn-primary">Follow</button>
@@ -115,10 +115,21 @@
                   <div class="row">
 
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Full Name</h6>
+                      <h6 class="mb-0">First Name</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                        <input type="text" class="form-control" name='name' value="{{$user->name}}">
+                        <input type="text" class="form-control" name='fname' value="{{$user->fname}}">
+
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Last Name</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        <input type="text" class="form-control" name='lname' value="{{$user->lname}}">
 
                     </div>
                   </div>
@@ -176,68 +187,76 @@
 
                 </div>
               </div>
-@if ($user->rool == 1)
 
 
-              <div class="row gutters-sm">
+            </form>
+
+            <div class="row gutters-sm">
 
                 <div class="col-sm-12 mb-3">
                   <div class="card h-100">
                     <div class="card-body">
-<h1>Car Images</h1>
-                        <table class="table table-bordered">
-                            <thead>
-                              <tr>
-                                <th>First Image</th>
-                                <th>Secound Image</th>
-                                <th>Theard Image</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td><div class="col-sm-9 text-secondary">
-                                    <input type="file" class="form-control" name='image1' value="{{$user->image1}}">
+<h1>Add Car</h1>
+@if (session('status'))
+<div class="alert alert-success">
 
-                                </div></td>
-                                <td><div class="col-sm-9 text-secondary">
-                                    <input type="file" class="form-control" name='image2' value="{{$user->image2}}">
+    {{ session('status') }}<i class="fa fa-check" aria-hidden="true"></i>
 
-                                </div></td>
-                                <td><div class="col-sm-9 text-secondary">
-                                    <input type="file" class="form-control" name='image3' value="{{$user->image3}}">
-
-                                </div></td>
-                              </tr>
-                              <tr>
-                                <td>
-                                    @if (isset($user->image1))
-                                    <img src="{{$user->image1}}" alt="Admin"  width="200">
-                                 @endif
-                                </td>
-                                <td>
-                                    @if (isset($user->image2))
-                                    <img src="{{$user->image2}}" alt="Admin"  width="200">
-                                 @endif
-                                </td>
-                                <td>
-                                    @if (isset($user->image3))
-                                    <img src="{{$user->image3}}" alt="Admin"  width="200">
-                                 @endif
-                                </td>
-                              </tr>
-
-                            </tbody>
-                          </table>
-                          <button type="submit" class="btn btn-primary">ِAdd Images</button>
+</div>
+@endif
+@if ($user->rool == 1 ||$user->rool == 2)
 
 
+<form method="post" action='{{route('addcar')}}' enctype="multipart/form-data">
+    @csrf
+    <input type="hidden" name="user_id" value='{{$user->id}}'>
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Car Model</label>
+      <input type="text" class="form-control" name='car_model' id="exampleFormControlInput1" >
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Car Number</label>
+        <input type="text" class="form-control" name='car_number' id="exampleFormControlInput1" >
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Car Color</label>
+        <input type="text" class="form-control" name='car_color' id="exampleFormControlInput1" >
+      </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Car image 1</label>
+        <input type="file" class="form-control" name='image1' id="exampleFormControlInput1" >
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Car image 2</label>
+        <input type="file" class="form-control" name='image2' id="exampleFormControlInput1" >
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Car image 3</label>
+        <input type="file" class="form-control " name='image3' id="exampleFormControlInput1" >
+      </div>
+    <div class="form-group">
+      <label for="exampleFormControlSelect1">Category</label>
+      <select class="form-control" id="exampleFormControlSelect1" name='category_id'>
+       @foreach ($category as $item)
+<option value='{{$item->id}}'>{{$item->category_name}}</option>
+       @endforeach
+
+
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Car Description</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" name='car_description' rows="3"></textarea>
+    </div>
+
+                          <button type="submit" class="btn btn-primary">ِAdd Car</button>
+
+</form> @endif
                     </div>
                   </div>
                 </div>
               </div>
-            </form>
-            @endif
-
 
             </div>
           </div>

@@ -13,8 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('personal__access__tokens', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
+
+            $table->string('category_name');
+             $table->string('category_image');
+
+            // $table->foreignId('car_id')
+            // ->constrained('cars')
+            // ->onUpdate('cascade')
+            // ->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -26,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('personal__access__tokens');
+        Schema::dropIfExists('categories');
     }
 };

@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\User;
+use App\Models\Category;
+use App\Models\Car;
+
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -81,5 +85,115 @@ class AdminController extends Controller
     public function destroy(Admin $admin)
     {
         //
+    }
+    public function getAllUsers()
+    {
+
+        $users = User::where('rool', 0)->get();
+        // dd($users);
+        return view('dashboard.tables')->with(compact('users'));
+    }
+    public function getAllDrivers()
+    {
+
+        $users = User::where('rool', 1)->orWhere('rool', 2)->get();
+        // dd($users);
+        return view('dashboard.drivers')->with(compact('users'));
+    }
+
+    public function getallcategories()
+    {
+        $category =  Category::all();
+
+        return view('dashboard.category')->with(compact('category'));
+    }
+
+    public function addcategory(Request $request)
+    {
+        // $this->validate($request,[
+        //     "category_name" => "required",
+        //     "category_image" => "required",
+
+
+
+        // ]);
+
+        $category = new Category();
+        $category->category_name = $request->category_name;
+        if ($request->hasFile('category_image')) {
+            $file = $request->category_image;
+            $new_file = time() . $file->getClientOriginalName();
+            $file->move('images', $new_file);
+            $category->category_image = 'images/' . $new_file;
+        }
+        $category->save();
+
+
+        return redirect('categoryadmin')->with(['status' => 'Success Add Category ']);
+    }
+    // public function showsingleCategory(){
+
+    //     // $category=Category::find($id)->first();
+
+    //     return view('dashboard.singlecategory');
+
+    // }
+    public function deleteCategory($id)
+    {
+        $category = Category::find($id);
+        $category->delete();
+        return redirect('categoryadmin');
+    }
+    public function editCategory($id, Request $request)
+    {
+        $category = Category::find($id);
+        $category->category_name = $request->category_name;
+        if ($request->hasFile('category_image')) {
+            $file = $request->category_image;
+            $new_file = time() . $file->getClientOriginalName();
+            $file->move('images', $new_file);
+            $category->category_image = 'images/' . $new_file;
+        }
+        $category->update();
+    }
+
+    public function showallCars()
+    {
+
+
+
+        $cars = Car::join('users', 'cars.user_id', '=', 'users.id')
+            ->join('categories', 'cars.category_id', '=', 'categories.id')
+            ->get(['cars.*', 'users.fname', 'users.lname', 'categories.category_name']);
+        // dd($cars->all());
+        return view('dashboard.cars', compact('cars'));
+    }
+
+    public function deleteCar($id)
+    {
+        $car = Car::find($id);
+        $car->delete();
+        return redirect('allcars');
+    }
+
+    public function activeDriver($id)
+    {
+
+        $driver = User::find($id);
+        if ($driver->rool == 1) {
+            $driver->rool = 2;
+            $driver->update();
+        } else {
+            $driver->rool = 1;
+            $driver->update();
+        }
+        return redirect('alldrivers');
+
+    }
+    public function deleteDriver($id)
+    {
+        $car = User::find($id);
+        $car->delete();
+        return redirect('alldrivers');
     }
 }

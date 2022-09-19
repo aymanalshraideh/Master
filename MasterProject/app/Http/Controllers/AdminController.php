@@ -89,14 +89,14 @@ class AdminController extends Controller
     public function getAllUsers()
     {
 
-        $users = User::where('rool', 0)->get();
+        $users = User::where('rool', 2)->orWhere('rool', 4)->get();
         // dd($users);
         return view('dashboard.tables')->with(compact('users'));
     }
     public function getAllDrivers()
     {
 
-        $users = User::where('rool', 1)->orWhere('rool', 2)->get();
+        $users = User::where('rool', 1)->orWhere('rool', 3)->get();
         // dd($users);
         return view('dashboard.drivers')->with(compact('users'));
     }
@@ -181,7 +181,7 @@ class AdminController extends Controller
 
         $driver = User::find($id);
         if ($driver->rool == 1) {
-            $driver->rool = 2;
+            $driver->rool = 3;
             $driver->update();
         } else {
             $driver->rool = 1;

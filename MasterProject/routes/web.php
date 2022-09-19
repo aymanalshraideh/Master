@@ -3,6 +3,7 @@
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\BookController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -28,7 +29,7 @@ Route::post('/registe', [UsersController::class, 'registerstore'])->name('regist
 
 // -------------------Login routes --------------------------------
 
-Route::get('/login', [UsersController::class, 'loginindex']);
+Route::get('/login', [UsersController::class, 'loginindex'])->name('login');
 Route::post('/login', [UsersController::class, 'loginstore'])->name('login');
 
 
@@ -68,6 +69,8 @@ Route::get('/singlevhicle/{id}', [CarController::class, 'singlevhicle'])->name('
 Route::get('/allcars', [CarController::class, 'allcars']);
 Route::post('/addcar', [CarController::class, 'store'])->name('addcar');
 
+// ----------  book ----------------
+Route::post('book', [BookController::class, 'store'])->name('book');
 
 
 // Route::get('/Vehicles', function () {

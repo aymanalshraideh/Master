@@ -4,6 +4,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BookController;
 
 
 use App\Models\Admin;
@@ -71,3 +72,12 @@ Route::get('/allcarsadmin',[AdminController::class,'showallCars']);
 //------------ delete Car-----
 
 Route::get('/deletecars/{id}',[AdminController::class,'deleteCar'])->name('deleteCar');
+
+
+
+
+// Route::get('/orders', function () {
+//     return view('dashboard.order');
+// });
+
+Route::get('/order',[BookController::class,'show']);

@@ -50,8 +50,9 @@
                                     <tbody>
                                         @foreach ($users as $item)
 
+@if ($item->rool ==2)
 
-                                        <tr>
+                                    <tr>
                                             <th scope="row">1</th>
                                             <td>{{$item->fname}}</td>
                                             <td>{{$item->lname}}</td>
@@ -60,9 +61,10 @@
                                             <td>Active</td>
 
                                             {{-- <td><img src="{{$item->profileImage}}" alt="Admin"  width="200"></td> --}}
-                                            <td> <button type="button" class="btn btn-success rounded-pill m-2"><i class="bi bi-caret-right-fill">Active</i></button>
+                                            <td>
+                                                 {{-- <button type="button" class="btn btn-success rounded-pill m-2"><i class="bi bi-caret-right-fill">Active</i></button> --}}
                                              <button type="button" class="btn btn-danger rounded-pill m-2"><i class="bi bi-person-x-fill">Delete</i></button> </td>
-                                        </tr>
+                                        </tr>@endif
                                         @endforeach
                                     </tbody>
                                 </table>

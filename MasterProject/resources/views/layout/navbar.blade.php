@@ -72,7 +72,7 @@
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="/" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
-            <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>ُBest Ride</h2>
+            <h2 class="m-0"><img src="img/logo.png" alt="logo" width="250px" /></h2>
 
         </a>
         {{-- @if (session('status'))

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\User;
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
+use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
@@ -34,9 +36,19 @@ class BookController extends Controller
      * @param  \App\Http\Requests\StoreBookRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreBookRequest $request)
+    public function store(Request $request)
     {
-        //
+        $save=new Book();
+        $save->phonenumber=$request->phonenumber;
+        $save->datetime=$request->datetime;
+        $save->user_id=$request->user_id;
+        $save->driver_id=$request->driver_id;
+        $save->save();
+        return back()->with(['status' => 'Car has been booked ']);
+
+
+
+
     }
 
     /**
@@ -47,7 +59,9 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        //
+        $order = User::join('books', 'users.id', '=', 'books.user_id')
+               ->get(['users.*', 'books.*']);
+               dd($order);
     }
 
     /**

@@ -44,7 +44,7 @@
               </div>
               <form action="{{route('editprofile')}}" method="post" enctype="multipart/form-data">
                 @csrf
-                @if ($user->rool == 1)
+                @if ($user->rool == 1||$user->rool == 3)
               <div class="card mt-3">
                 <table class="table table-bordered">
                     <thead>
@@ -192,11 +192,18 @@
             </form>
 
             <div class="row gutters-sm">
+                @if ($user->rool == 1 )
+                <div class="alert alert-info">
 
+                    You can add your car when your account is activated , please contact with Admin
+
+                </div>
+                @endif
+@if ($user->rool == 3 )
                 <div class="col-sm-12 mb-3">
                   <div class="card h-100">
                     <div class="card-body">
-<h1>Add Car</h1>
+
 @if (session('status'))
 <div class="alert alert-success">
 
@@ -204,8 +211,8 @@
 
 </div>
 @endif
-@if ($user->rool == 1 ||$user->rool == 2)
 
+<h1>Add Car</h1>
 
 <form method="post" action='{{route('addcar')}}' enctype="multipart/form-data">
     @csrf

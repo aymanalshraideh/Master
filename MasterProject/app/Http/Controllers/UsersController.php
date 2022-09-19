@@ -58,6 +58,7 @@ $depassword= Crypt::decrypt($useremail->password);;
 
 $request->session()->put('user_id',$useremail->id);
 $request->session()->put('user_name',$useremail->name);
+$request->session()->put('user_rool',$useremail->rool);
 
 // if (session('user_id')){
 //     return 'success session';

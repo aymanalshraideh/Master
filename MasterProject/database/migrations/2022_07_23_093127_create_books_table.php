@@ -16,15 +16,17 @@ return new class extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->string('phonenumber')->nullable();
-            $table->string('allergy1')->nullable();
-            $table->string('allergy2')->nullable();
-            $table->string('allergy3')->nullable();
-            $table->string('services')->nullable();
+            $table->dateTime('datetime')->nullable();
+            
+
             $table->foreignId('user_id')
             ->constrained('users')
             ->onUpdate('cascade')
             ->onDelete('cascade');
-
+            $table->foreignId('driver_id')
+            ->constrained('users')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
             $table->timestamps();
         });
     }

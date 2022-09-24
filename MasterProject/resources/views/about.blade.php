@@ -30,7 +30,7 @@
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="position-relative overflow-hidden ps-5 pt-5 h-100" style="min-height: 400px;">
                         <img class="position-absolute w-100 h-100" src="img/passenger1.jpg" alt="" style="object-fit: cover;">
-                        <img class="position-absolute top-0 start-0 bg-white pe-3 pb-3" src="img/kk.jpg" alt="" style="width: 200px; height: 200px;">
+                        <img class="position-absolute top-0 start-0 bg-white pe-3 pb-3" src="img/taxi.jpg" alt="" style="width: 200px; height: 200px;">
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
@@ -54,17 +54,7 @@
                             </div>
                         </div>
                         <div class="row g-4">
-                            <div class="col-sm-6">
-                                <a class="btn btn-primary py-3 px-5" href="">Read More</a>
-                            </div>
-                            <div class="col-sm-6">
-                                <a class="d-inline-flex align-items-center btn btn-outline-primary border-2 p-2" href="tel:+0123456789">
-                                    <span class="flex-shrink-0 btn-square bg-primary">
-                                        <i class="fa fa-phone-alt text-white"></i>
-                                    </span>
-                                    <span class="px-3">+012 345 6789</span>
-                                </a>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -73,7 +63,7 @@
     </div>
 
 
-    <!-- Team Start -->
+    {{-- <!-- Team Start -->
     <div class="container-xxl py-6">
         <div class="container">
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
@@ -148,7 +138,7 @@
             </div>
         </div>
     </div>
-    <!-- Team End -->
+    <!-- Team End --> --}}
 
 
     @endsection

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Contact;
 use App\Http\Requests\StoreContactRequest;
 use App\Http\Requests\UpdateContactRequest;
+use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
@@ -15,7 +16,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+        return view('contact');
     }
 
     /**
@@ -34,10 +35,28 @@ class ContactController extends Controller
      * @param  \App\Http\Requests\StoreContactRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreContactRequest $request)
+    public function store(Request $request)
     {
-        //
-    }
+        {
+            $request->validate([
+                'name'=>'required',
+                'email'=>'required',
+                'subject'=>'required',
+                'message'=>'required',
+            ]);
+            Contact::create([
+
+                'name'=>$request->name,
+                'email'=>$request->email,
+                'subject'=>$request->subject,
+                'message'=>$request->message
+
+            ]);
+            return redirect('contact')->with('status', 'We reived your contact');
+
+
+
+    }}
 
     /**
      * Display the specified resource.
@@ -47,7 +66,15 @@ class ContactController extends Controller
      */
     public function show(Contact $contact)
     {
-        //
+
+
+            $message = contact::all();
+
+            $mes = contact::orderBy('updated_at', 'desc')->paginate(4);
+
+
+            return view('contact', compact( 'mes'));
+
     }
 
     /**

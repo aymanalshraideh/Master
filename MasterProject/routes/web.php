@@ -4,6 +4,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\ContactController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -73,13 +74,20 @@ Route::post('/addcar', [CarController::class, 'store'])->name('addcar');
 Route::post('book', [BookController::class, 'store'])->name('book');
 
 
+
+
+//*************** contact ********************** */
+Route::get('/contact',[ContactController::class,'index']);
+Route::post('/contactt',[ContactController::class,'store'])->name('mstore');
+//*************** contact ********************** */
+
 // Route::get('/Vehicles', function () {
 //     return view('vehicles');
 // });
 
-Route::get('/content', function () {
-    return view('content');
-});
+// Route::get('/contact', function () {
+//     return view('contact');
+// });
 
 Route::get('/appointment', function () {
     return view('appointment');

@@ -4,6 +4,9 @@
 <head>
     <meta charset="utf-8">
     <title>@yield('title')</title>
+    <link rel = "icon" href =
+    "img/headlogo.png"
+            type = "image/x-icon">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -72,7 +75,7 @@
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="/" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
-            <h2 class="m-0"><img src="img/logo.png" alt="logo" width="250px" /></h2>
+            <h2 class="m-0"> <img src="{{url('img/logo.png')}}" alt="MOHKTARKOM" width="200px"> </h2>
 
         </a>
         {{-- @if (session('status'))
@@ -103,8 +106,8 @@
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu bg-light m-0">
-                        <a href="feature" class="dropdown-item">Features</a>
-                        <a href="appointment" class="dropdown-item">Appointment</a>
+                        {{-- <a href="feature" class="dropdown-item">Features</a> --}}
+                        {{-- <a href="appointment" class="dropdown-item">Appointment</a> --}}
                         <a href="team" class="dropdown-item">Our Team</a>
                         <a href="testimonial" class="dropdown-item">Testimonial</a>
 

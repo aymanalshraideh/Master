@@ -64,16 +64,16 @@ class ContactController extends Controller
      * @param  \App\Models\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function show(Contact $contact)
+    public function show()
     {
 
 
-            $message = contact::all();
+            $message = Contact::all();
 
-            $mes = contact::orderBy('updated_at', 'desc')->paginate(4);
+            $mes = Contact::orderBy('updated_at', 'desc');
 
 
-            return view('contact', compact( 'mes'));
+            return view('dashboard.messages', compact( 'mes','message'));
 
     }
 

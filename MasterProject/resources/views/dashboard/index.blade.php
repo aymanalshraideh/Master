@@ -9,7 +9,7 @@
 
 
 
-            <!-- Sale & Revenue Start -->
+            {{-- <!-- Sale & Revenue Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
                     <div class="col-sm-6 col-xl-3">
@@ -50,10 +50,10 @@
                     </div>
                 </div>
             </div>
-            <!-- Sale & Revenue End -->
+            <!-- Sale & Revenue End --> --}}
 
 
-            <!-- Sales Chart Start -->
+            {{-- <!-- Sales Chart Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
                     <div class="col-sm-12 col-xl-6">
@@ -76,10 +76,10 @@
                     </div>
                 </div>
             </div>
-            <!-- Sales Chart End -->
+            <!-- Sales Chart End --> --}}
 
 
-            <!-- Recent Sales Start -->
+            {{-- <!-- Recent Sales Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="bg-light text-center rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
@@ -150,13 +150,13 @@
                     </div>
                 </div>
             </div>
-            <!-- Recent Sales End -->
+            <!-- Recent Sales End --> --}}
 
 
             <!-- Widgets Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
-                    <div class="col-sm-12 col-md-6 col-xl-4">
+                    {{-- <div class="col-sm-12 col-md-6 col-xl-4">
                         <div class="h-100 bg-light rounded p-4">
                             <div class="d-flex align-items-center justify-content-between mb-2">
                                 <h6 class="mb-0">Messages</h6>
@@ -203,7 +203,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="col-sm-12 col-md-6 col-xl-4">
                         <div class="h-100 bg-light rounded p-4">
                             <div class="d-flex align-items-center justify-content-between mb-4">
@@ -213,7 +213,7 @@
                             <div id="calender"></div>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-6 col-xl-4">
+                    {{-- <div class="col-sm-12 col-md-6 col-xl-4">
                         <div class="h-100 bg-light rounded p-4">
                             <div class="d-flex align-items-center justify-content-between mb-4">
                                 <h6 class="mb-0">To Do List</h6>
@@ -269,7 +269,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <!-- Widgets End -->

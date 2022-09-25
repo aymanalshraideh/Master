@@ -22,7 +22,7 @@ class CarController extends Controller
 
     public function singlevhicle($id){
         $car = Car::find($id);
-        $user=User::find($car->user_id)->first();
+        $user=User::find($car->user_id);
 // dd($car);
          return view('singleCar',compact('car','user'));
     }

@@ -134,10 +134,10 @@
                         <div class="text-center p-4 pt-0">
                             <div class="d-inline-block bg-primary text-white fs-5 py-1 px-4 mb-4"></div>
                             <h5 class="mb-3">{{$item->category_name}}</h5>
-                            <p>Tempor erat elitr rebum at clita dolor diam ipsum sit diam amet diam et eos</p>
+                            {{-- <p>Tempor erat elitr rebum at clita dolor diam ipsum sit diam amet diam et eos</p> --}}
                             <ol class="breadcrumb justify-content-center mb-0">
-                                <li class="breadcrumb-item small"><i class="fa fa-signal text-primary me-2"></i>Beginner</li>
-                                <li class="breadcrumb-item small"><i class="fa fa-calendar-alt text-primary me-2"></i>3 Week</li>
+                                {{-- <li class="breadcrumb-item small"><i class="fa fa-signal text-primary me-2"></i>Beginner</li>
+                                <li class="breadcrumb-item small"><i class="fa fa-calendar-alt text-primary me-2"></i>3 Week</li> --}}
                             </ol>
                         </div>
                         <div class="position-relative mt-auto">

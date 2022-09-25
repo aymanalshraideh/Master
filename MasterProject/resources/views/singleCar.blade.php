@@ -122,7 +122,7 @@
                             @else
                             <a href="{{route('login')}}">
                                 <button type="button" class="btn btn-primary">
-                                    Login
+                                    Login to Book
                                 </button></a>
                             @endif
 @endif

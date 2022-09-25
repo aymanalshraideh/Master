@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\ContactController;
 
 
 use App\Models\Admin;
@@ -81,3 +82,6 @@ Route::get('/deletecars/{id}',[AdminController::class,'deleteCar'])->name('delet
 // });
 
 Route::get('/order',[BookController::class,'show']);
+
+
+Route::get('/contactadmin',[ContactController::class,'show']);
